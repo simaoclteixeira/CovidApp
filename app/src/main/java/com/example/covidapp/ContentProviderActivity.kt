@@ -9,9 +9,9 @@ import android.provider.BaseColumns
 import kotlin.reflect.KTypeProjection
 
 class ContentProviderActivity : ContentProvider() {
-    private var bdCovidOpenHelper : BdCovidOpenHelper? = null
+    private var BdCovidOpenHelper : BdCovidOpenHelper? = null
     override fun onCreate(): Boolean {
-        bdCovidOpenHelper = BdCovidOpenHelper(context)
+        BdCovidOpenHelper = BdCovidOpenHelper(context)
         return true
     }
 
@@ -22,7 +22,7 @@ class ContentProviderActivity : ContentProvider() {
         seletionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        val bd = bdCovidOpenHelper!!.readableDatabase
+        val bd = BdCovidOpenHelper!!.readableDatabase
 
         return when (getUriMatcher().match(uri)){
             URI_UTENTE -> TabelaUtentes(bd).query(
@@ -96,7 +96,7 @@ class ContentProviderActivity : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        val bd = bdCovidOpenHelper!!.writableDatabase
+        val bd = BdCovidOpenHelper!!.writableDatabase
 
         val id = when (getUriMatcher().match(uri)){
             URI_UTENTE -> TabelaUtentes(bd).insert(values!!)
@@ -111,7 +111,7 @@ class ContentProviderActivity : ContentProvider() {
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        val bd = bdCovidOpenHelper!!.writableDatabase
+        val bd = BdCovidOpenHelper!!.writableDatabase
 
         return when (getUriMatcher().match(uri)){
             URI_UTENTE_ESPECIFICO -> TabelaUtentes(bd).delete(
@@ -132,7 +132,7 @@ class ContentProviderActivity : ContentProvider() {
     }
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
-        val bd = bdCovidOpenHelper!!.writableDatabase
+        val bd = BdCovidOpenHelper!!.writableDatabase
 
         return  when (getUriMatcher().match(uri)){
             URI_UTENTE_ESPECIFICO -> TabelaUtentes(bd).update(
@@ -155,7 +155,7 @@ class ContentProviderActivity : ContentProvider() {
     }
 
     companion object{
-        private const val AUTHORITY= "pt.ipg.covid"
+        private const val AUTHORITY= "com.example.covidapp"
 
         private const val UTENTE = "Utente"
         private const val LOCALIZACAO = "Localizacao"
@@ -191,4 +191,4 @@ class ContentProviderActivity : ContentProvider() {
         }
     }
 
-}}
+}

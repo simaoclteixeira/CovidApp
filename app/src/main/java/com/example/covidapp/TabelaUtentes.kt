@@ -9,7 +9,7 @@ class TabelaUtentes(db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
     fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME_UTENTE TEXT NOT NULL, $CAMPO_DATA_NASCIMENTO TEXT NOT NULL, $CAMPO_NR_UTENTE NUMERIC NOT NULL, FOREIGN KEY (${CAMPO_ID_VACINA}) REFERENCES ${TabelaVacinas.NOME_TABELA})")
+        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME_UTENTE TEXT NOT NULL, $CAMPO_DATA_NASCIMENTO DATE NOT NULL, $CAMPO_NR_UTENTE NUMERIC NOT NULL, FOREIGN KEY (${CAMPO_ID_VACINA}) REFERENCES ${TabelaVacinas.NOME_TABELA})")
     }
 
     fun insert(values: ContentValues): Long {
@@ -25,12 +25,12 @@ class TabelaUtentes(db: SQLiteDatabase) {
     }
 
     fun query(
-        columns: Array<String>,
-        selection: String,
-        selectionArgs: Array<String>,
-        groupBy: String,
-        having: String,
-        orderBy: String
+        columns: Array<String>?,
+        selection: String?,
+        selectionArgs: Array<String>?,
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
     ): Cursor? {
         return db.query(TabelaUtentes.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
