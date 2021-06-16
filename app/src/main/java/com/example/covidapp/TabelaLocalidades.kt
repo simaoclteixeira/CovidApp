@@ -1,11 +1,11 @@
-package pt.ipg.covid
+package com.example.covidapp
 
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class TabelaLocalidade(db: SQLiteDatabase) {
+class TabelaLocalidades(db: SQLiteDatabase) {
     private val db : SQLiteDatabase = db
 
 
@@ -14,15 +14,15 @@ class TabelaLocalidade(db: SQLiteDatabase) {
     }
 
     fun insert(values: ContentValues): Long {
-        return db.insert(TabelaLocalidade.NOME_TABELA, null, values)
+        return db.insert(TabelaLocalidades.NOME_TABELA, null, values)
     }
 
     fun update(values: ContentValues, whereClause: String, whereArgs: Array<String>): Int {
-        return db.update(TabelaLocalidade.NOME_TABELA, values, whereClause, whereArgs)
+        return db.update(TabelaLocalidades.NOME_TABELA, values, whereClause, whereArgs)
     }
 
     fun delete(whereClause: String, whereArgs: Array<String>): Int {
-        return db.delete(TabelaLocalidade.NOME_TABELA, whereClause, whereArgs)
+        return db.delete(TabelaLocalidades.NOME_TABELA, whereClause, whereArgs)
     }
 
 
@@ -34,14 +34,14 @@ class TabelaLocalidade(db: SQLiteDatabase) {
         having: String?,
         orderBy: String?
     ): Cursor? {
-        return db.query(TabelaLocalidade.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        return db.query(TabelaLocalidades.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
 
     companion object{
-        const val NOME_TABELA = "enfermeiros"
-        const val NOME_LOCALIDADE = "nome"
-        const val CODIGO_POSTAL = "numero"
+        const val NOME_TABELA = "Localidades"
+        const val NOME_LOCALIDADE = "Nome"
+        const val CODIGO_POSTAL = "CodigoPostal"
 
 
 

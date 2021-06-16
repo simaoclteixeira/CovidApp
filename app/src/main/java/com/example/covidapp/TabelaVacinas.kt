@@ -4,24 +4,25 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
+import com.example.covidapp.TabelaLocalidades
 
-class TabelaVacina(db: SQLiteDatabase) {
+class TabelaVacinas(db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
     fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_DATA DATE NOT NULL)")
+        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_DATA DATE NOT NULL, FOREIGN KEY (${CAMPO_ID_LOCALIDADE}) REFERENCES ${TabelaLocalidades.NOME_TABELA})")
     }
 
     fun insert(values: ContentValues): Long {
-        return db.insert(TabelaVacina.NOME_TABELA, null, values)
+        return db.insert(TabelaVacinas.NOME_TABELA, null, values)
     }
 
     fun update(values: ContentValues, whereClause: String, whereArgs: Array<String>): Int {
-        return db.update(TabelaVacina.NOME_TABELA, values, whereClause, whereArgs)
+        return db.update(TabelaVacinas.NOME_TABELA, values, whereClause, whereArgs)
     }
 
     fun delete(whereClause: String, whereArgs: Array<String>): Int {
-        return db.delete(TabelaVacina.NOME_TABELA, whereClause, whereArgs)
+        return db.delete(TabelaVacinas.NOME_TABELA, whereClause, whereArgs)
     }
 
     fun query(
@@ -32,15 +33,17 @@ class TabelaVacina(db: SQLiteDatabase) {
         having: String,
         orderBy: String
     ): Cursor? {
-        return db.query(TabelaVacina.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        return db.query(TabelaVacinas.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
     companion object {
         const val NOME_TABELA = "Vacina"
         const val CAMPO_DATA = "Data"
+        const val CAMPO_ID_LOCALIDADE = "Localidade"
 
 
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID,CAMPO_DATA)
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID,CAMPO_DATA, CAMPO_ID_LOCALIDADE)
     }
 }
