@@ -10,7 +10,7 @@ class TabelaVacinas(db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
     fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_DATA DATE NCAMPO_ID_$CAMPO_ID_LOCALIDADE NUMERIC NOT NULL, LOCALIDADE, FOREIGN KEY (${CAMPO_ID_LOCALIDADE}) REFERENCES ${TabelaLocalidades.NOME_TABELA})")
+        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME_VACINA STRING NOT NULL, $CAMPO_DATA DATE NCAMPO_ID_$CAMPO_ID_LOCALIDADE NUMERIC NOT NULL, LOCALIDADE, FOREIGN KEY (${CAMPO_ID_LOCALIDADE}) REFERENCES ${TabelaLocalidades.NOME_TABELA})")
     }
 
     fun insert(values: ContentValues): Long {
@@ -40,12 +40,13 @@ class TabelaVacinas(db: SQLiteDatabase) {
 
     companion object {
         const val NOME_TABELA = "Vacina"
+        const val CAMPO_NOME_VACINA = "NomeVacina"
         const val CAMPO_DATA = "Data"
         const val CAMPO_ID_LOCALIDADE = "Localidade"
 
 
 
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID,CAMPO_DATA, CAMPO_ID_LOCALIDADE)
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_VACINA, CAMPO_DATA, CAMPO_ID_LOCALIDADE)
     }
 }

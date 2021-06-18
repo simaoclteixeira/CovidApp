@@ -6,11 +6,11 @@ import android.provider.BaseColumns
 import java.time.LocalDate
 import java.util.*
 
-data class Localidade(var id: Long = -1, var data: Date, var localidade: String) {
+data class Localidade(var id: Long = -1, var nome: String, var codigoPostal: String) {
     fun toContentValues() : ContentValues{
         val valores = ContentValues().apply {
-            put(TabelaVacinas.CAMPO_DATA,data.time)
-            put(TabelaVacinas.CAMPO_ID_LOCALIDADE,localidade)
+            put(TabelaLocalidades.NOME_LOCALIDADE,nome)
+            put(TabelaLocalidades.CODIGO_POSTAL,codigoPostal)
 
         }
         return valores
@@ -23,11 +23,11 @@ data class Localidade(var id: Long = -1, var data: Date, var localidade: String)
             val colunaCodigoPostal = cursor.getColumnIndex(TabelaLocalidades.CODIGO_POSTAL)
 
             val id = cursor.getLong(colunaId)
-            val nome = Date(cursor.getLong(colunaNome))
-            val localidade = cursor.getString(colunaCodigoPostal)
+            val nome = cursor.getString(colunaNome)
+            val codigoPostal = cursor.getString(colunaCodigoPostal)
 
 
-            return Localidade( id, nome, localidade)
+            return Localidade( id, nome, codigoPostal)
         }
     }
 }

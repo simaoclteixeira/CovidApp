@@ -40,7 +40,7 @@ class TabelaLocalidades(db: SQLiteDatabase) {
 
     companion object{
         const val NOME_TABELA = "Localidades"
-        const val NOME_LOCALIDADE = "Nome"
+        const val NOME_LOCALIDADE = "NomeLocalidade"
         const val CODIGO_POSTAL = "CodigoPostal"
 
 
