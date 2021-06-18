@@ -10,7 +10,7 @@ class TabelaVacinas(db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
     fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_DATA DATE NOT NULL, FOREIGN KEY (${CAMPO_ID_LOCALIDADE}) REFERENCES ${TabelaLocalidades.NOME_TABELA})")
+        db.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_DATA DATE NCAMPO_ID_$CAMPO_ID_LOCALIDADE NUMERIC NOT NULL, LOCALIDADE, FOREIGN KEY (${CAMPO_ID_LOCALIDADE}) REFERENCES ${TabelaLocalidades.NOME_TABELA})")
     }
 
     fun insert(values: ContentValues): Long {
@@ -26,7 +26,7 @@ class TabelaVacinas(db: SQLiteDatabase) {
     }
 
     fun query(
-        columns: Array<String>?,
+        columns: Array<String>,
         selection: String?,
         selectionArgs: Array<String>?,
         groupBy: String?,
@@ -34,6 +34,8 @@ class TabelaVacinas(db: SQLiteDatabase) {
         orderBy: String?
     ): Cursor? {
         return db.query(TabelaVacinas.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+
+
     }
 
     companion object {
