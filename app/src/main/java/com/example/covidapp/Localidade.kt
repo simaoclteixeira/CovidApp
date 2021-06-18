@@ -19,15 +19,15 @@ data class Localidade(var id: Long = -1, var data: Date, var localidade: String)
     companion object{
         fun fromCursor(cursor: Cursor) : Localidade{
             val colunaId = cursor.getColumnIndex(BaseColumns._ID)
-            val colunaData = cursor.getColumnIndex(TabelaVacinas.CAMPO_DATA)
-            val colunaLocalidade = cursor.getColumnIndex(TabelaVacinas.CAMPO_ID_LOCALIDADE)
+            val colunaNome = cursor.getColumnIndex(TabelaLocalidades.NOME_LOCALIDADE)
+            val colunaCodigoPostal = cursor.getColumnIndex(TabelaLocalidades.CODIGO_POSTAL)
 
             val id = cursor.getLong(colunaId)
-            val data = Date(cursor.getLong(colunaData))
-            val localidade = cursor.getString(colunaLocalidade)
+            val nome = Date(cursor.getLong(colunaNome))
+            val localidade = cursor.getString(colunaCodigoPostal)
 
 
-            return Localidade( id, data, localidade)
+            return Localidade( id, nome, localidade)
         }
     }
 }
