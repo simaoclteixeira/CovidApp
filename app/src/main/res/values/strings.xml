@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">CovidApp</string>
+    <string name="nome">Nome</string>
+    <string name="data">Data</string>
+    <string name="localidade">Localidade</string>
+    <string name="nome_localidade">Nome Localidade</string>
+    <string name="codigo_postal">Codigo Postal</string>
+    <string name="localidades">LOCALIDADES</string>
+    <string name="utentes">UTENTES</string>
+    <string name="vacinas">VACINAS</string>
 </resources>
